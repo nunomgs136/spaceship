@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Pralax : MonoBehaviour
 {
-    private float leght;
-    public float prallaxeffect;
+    private float lenght;
+    public float parallaxEffect;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
