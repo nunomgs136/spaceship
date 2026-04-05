@@ -61,10 +61,10 @@ public class gameManager : MonoBehaviour
     public void InimigoDestruido()
     {
         pontos++;
-        inimigosRestantes--;
+        //inimigosRestantes--;
         textoPontos.text = "Pontos: " + pontos;
 
-        if (inimigosRestantes <= 0)
+        if (pontos >= 20)
         {
             venceu = true;
             // Resetar time scale antes de mudar de cena

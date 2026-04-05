@@ -180,3 +180,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   velocidade: 2
+  raioPrefab: {fileID: 8618420388449633117, guid: c70c82fd128774e4cbb4984384be5b3a, type: 3}
+  tempoTiro: 2
