@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8618420388449633117
+--- !u!1 &4131072934229148159
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6188472712922046725}
-  - component: {fileID: 6515774495663358682}
-  - component: {fileID: 7049103543908632037}
-  - component: {fileID: 8088383368498478942}
-  - component: {fileID: 3638431500637647130}
+  - component: {fileID: 7022904777253356134}
+  - component: {fileID: 466957034578605499}
+  - component: {fileID: 4052621047735123852}
+  - component: {fileID: 6240112115564749613}
+  - component: {fileID: 24852934156729732}
   m_Layer: 0
-  m_Name: taco_0
-  m_TagString: Raio
+  m_Name: Powerup
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6188472712922046725
+--- !u!4 &7022904777253356134
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8618420388449633117}
+  m_GameObject: {fileID: 4131072934229148159}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.29104, y: -0.53276, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6515774495663358682
+--- !u!212 &466957034578605499
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8618420388449633117}
+  m_GameObject: {fileID: 4131072934229148159}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -82,25 +82,25 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 2069420720813572178, guid: 4ce8974b0effd1040bffff272026cf01, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 0.9528302, g: 0.0764062, b: 0.8882909, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.29, y: 0.18}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!61 &7049103543908632037
+--- !u!61 &4052621047735123852
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8618420388449633117}
+  m_GameObject: {fileID: 4131072934229148159}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -132,22 +132,22 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.29, y: 0.18}
-    newSize: {x: 0.29, y: 0.18}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.29, y: 0.18}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!50 &8088383368498478942
+--- !u!50 &6240112115564749613
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8618420388449633117}
+  m_GameObject: {fileID: 4131072934229148159}
   m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -155,7 +155,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -167,18 +167,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3638431500637647130
+--- !u!114 &24852934156729732
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8618420388449633117}
+  m_GameObject: {fileID: 4131072934229148159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e87bc75b9acf28e4d9462aaaf33f8745, type: 3}
+  m_Script: {fileID: 11500000, guid: efae724ee9d625a4f9498de5a00ac063, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Raio
-  velocidade: 15
-  direcao: {x: 1, y: 0, z: 0}
-  tiroInimigo: 0
+  m_EditorClassIdentifier: '::'
+  moveSpeed: 2
+  moveDirection: {x: -1, y: 0, z: 0}

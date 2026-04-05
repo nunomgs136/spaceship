@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class gameManager : MonoBehaviour
 {
@@ -10,33 +11,16 @@ public class gameManager : MonoBehaviour
     public int vidas = 5;
     public bool venceu = false;
     public int inimigosRestantes = 0;
-
+    
+    // Configurações do Slow Motion
+    [Header("Slow Motion Settings")]
+    public float slowMotionFactor = 0.5f; // 0.5 = metade da velocidade
+    public float slowMotionDuration = 3f; // Duração em segundos
+    
     private TMP_Text textoPontos;
     private TMP_Text textoVidas;
+    private bool isSlowMotionActive = false;
 
-    public float slowMotionScale = 0.3f;
-    public float slowMotionDuration = 5f; 
-
-    private float timer;
-    private bool isSlowed = false;
-    private float originalFixedDeltaTime;
-    void Start()
-    {
-        originalFixedDeltaTime = Time.fixedDeltaTime;
-    }
-
-    void Update()
-    {
-        if (isSlowed)
-        {
-            timer -= Time.unscaledDeltaTime; 
-
-            if (timer <= 0f)
-            {
-                RestoreNormalTime(); // Acabou o tempo, volta ao normal
-            }
-        }
-    }
     void Awake()
     {
         if (instance != null && instance != this)
@@ -61,6 +45,10 @@ public class gameManager : MonoBehaviour
             textoVidas  = GameObject.Find("VidasText")?.GetComponent<TMP_Text>();
             inimigosRestantes = GameObject.FindGameObjectsWithTag("Invaders").Length;
             AtualizarUI();
+            
+            // Resetar o time scale ao carregar a fase
+            Time.timeScale = 1f;
+            isSlowMotionActive = false;
         }
     }
 
@@ -79,6 +67,8 @@ public class gameManager : MonoBehaviour
         if (inimigosRestantes <= 0)
         {
             venceu = true;
+            // Resetar time scale antes de mudar de cena
+            Time.timeScale = 1f;
             SceneManager.LoadScene("TelaFinal");
         }
     }
@@ -91,6 +81,8 @@ public class gameManager : MonoBehaviour
         if (vidas <= 0)
         {
             venceu = false;
+            // Resetar time scale antes de mudar de cena
+            Time.timeScale = 1f;
             SceneManager.LoadScene("TelaFinal");
         }
     }
@@ -100,21 +92,33 @@ public class gameManager : MonoBehaviour
         if (textoPontos != null) textoPontos.text = "Pontos: " + pontos;
         if (textoVidas  != null) textoVidas.text  = "Vidas: "  + vidas;
     }
-
+    
     public void ActivateSlowMotion()
     {
-        Time.timeScale = slowMotionScale;
-        Time.fixedDeltaTime = originalFixedDeltaTime * slowMotionScale;
-        isSlowed = true;
-        timer = slowMotionDuration;
-
+        if (!isSlowMotionActive)
+        {
+            StartCoroutine(SlowMotionCoroutine());
+        }
     }
-
-    public void RestoreNormalTime()
+    
+    private IEnumerator SlowMotionCoroutine()
     {
+        isSlowMotionActive = true;
+        
+        // Ativar slow motion
+        Time.timeScale = slowMotionFactor;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale; // Ajustar física
+        
+        Debug.Log("Slow Motion Ativado!");
+        
+        // Aguardar a duração do efeito (em tempo real, não afetado pelo timeScale)
+        yield return new WaitForSecondsRealtime(slowMotionDuration);
+        
+        // Desativar slow motion
         Time.timeScale = 1f;
-        Time.fixedDeltaTime = originalFixedDeltaTime;
-        isSlowed = false;
-
+        Time.fixedDeltaTime = 0.02f;
+        
+        isSlowMotionActive = false;
+        Debug.Log("Slow Motion Desativado!");
     }
 }

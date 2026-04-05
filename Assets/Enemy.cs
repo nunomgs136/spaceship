@@ -7,12 +7,28 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         // Move o inimigo para a esquerda
-        transform.Translate(Vector3.right * velocidade * Time.deltaTime);
+        transform.Translate(Vector3.up * velocidade * Time.deltaTime);
 
         // Destrói o inimigo ao sair da tela pela esquerda
-        if (transform.position.x < -20f)
+        if (transform.position.x < -10f)
         {
             Destroy(gameObject);
         }
     }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Raio"))
+        {
+            gameManager.instance.InimigoDestruido();
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+
+        if (other.CompareTag("Player"))
+        {
+            gameManager.instance.PlayerAtingido();
+            Destroy(gameObject); // ← esse era o problema, faltava destruir o alien
+        }
+    }
+
 }
