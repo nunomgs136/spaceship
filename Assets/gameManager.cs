@@ -14,6 +14,29 @@ public class gameManager : MonoBehaviour
     private TMP_Text textoPontos;
     private TMP_Text textoVidas;
 
+    public float slowMotionScale = 0.3f;
+    public float slowMotionDuration = 5f; 
+
+    private float timer;
+    private bool isSlowed = false;
+    private float originalFixedDeltaTime;
+    void Start()
+    {
+        originalFixedDeltaTime = Time.fixedDeltaTime;
+    }
+
+    void Update()
+    {
+        if (isSlowed)
+        {
+            timer -= Time.unscaledDeltaTime; 
+
+            if (timer <= 0f)
+            {
+                RestoreNormalTime(); // Acabou o tempo, volta ao normal
+            }
+        }
+    }
     void Awake()
     {
         if (instance != null && instance != this)
@@ -76,5 +99,22 @@ public class gameManager : MonoBehaviour
     {
         if (textoPontos != null) textoPontos.text = "Pontos: " + pontos;
         if (textoVidas  != null) textoVidas.text  = "Vidas: "  + vidas;
+    }
+
+    public void ActivateSlowMotion()
+    {
+        Time.timeScale = slowMotionScale;
+        Time.fixedDeltaTime = originalFixedDeltaTime * slowMotionScale;
+        isSlowed = true;
+        timer = slowMotionDuration;
+
+    }
+
+    public void RestoreNormalTime()
+    {
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = originalFixedDeltaTime;
+        isSlowed = false;
+
     }
 }

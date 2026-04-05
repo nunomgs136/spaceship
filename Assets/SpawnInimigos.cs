@@ -1,17 +1,52 @@
 using UnityEngine;
 
-public class SpawnInimigos : MonoBehaviour
+public class SpawnInimigos: MonoBehaviour
 {
-    public GameObject naveMaePrefab;
-    public Transform pontoSpawn;
+    [Header("Prefab e paredes")]
+    public GameObject inimigoPrefab;
+    public Transform topWall;
+    public Transform bottomWall;
+    public Transform rightWall;
+
+    [Header("Configuração de spawn")]
+    public float intervaloMinimo = 1f;
+    public float intervaloMaximo = 3f;
+
+    private float temporizador;
 
     void Start()
     {
-        InvokeRepeating("Spawnar", 10f, 10f);
+        temporizador = GerarIntervalo();
     }
 
-    void Spawnar()
+    void Update()
     {
-        Instantiate(naveMaePrefab, pontoSpawn.position, Quaternion.identity);
+        temporizador -= Time.deltaTime;
+
+        if (temporizador <= 0f)
+        {
+            SpawnarInimigo();
+            temporizador = GerarIntervalo();
+        }
+    }
+
+    void SpawnarInimigo()
+    {
+    Camera cam = Camera.main;
+    float alturaMetade = cam.orthographicSize;
+    float larguraMetade = cam.orthographicSize * cam.aspect;
+
+    float yAleatorio = Random.Range(-alturaMetade, alturaMetade);
+    float xSpawn = cam.transform.position.x + larguraMetade + 1f;
+
+    Vector3 posicaoSpawn = new Vector3(xSpawn, yAleatorio, 0f);
+    Quaternion rotacao = Quaternion.Euler(0f, 0f, 90f);
+
+    Instantiate(inimigoPrefab, posicaoSpawn, rotacao);
+    }
+
+    float GerarIntervalo()
+    {
+        return Random.Range(intervaloMinimo, intervaloMaximo);
     }
 }
